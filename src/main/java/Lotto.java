@@ -12,11 +12,22 @@ public class Lotto {
     }
 
     public void buyLotto(int price) {
-        int numberOfLotto = price / LOTTO_PRICE;
-        for (int i = 0; i < numberOfLotto; i++) {
+        int numberOfLotto = calculateNumberOfLotto(price);
+        this.buyLottos.addAll(generateLottos(numberOfLotto));
+
+    }
+
+    private int calculateNumberOfLotto(int price) {
+        return price / LOTTO_PRICE;
+    }
+
+    private ArrayList<ArrayList<Integer>> generateLottos(int numberOfLotto) {
+        ArrayList<ArrayList<Integer>> lottos = new ArrayList<>();
+        for (int index = 0; index < numberOfLotto; index++) {
             ArrayList<Integer> lottoNumbers = lottoNumberGenerator.generateLottoNumbers(numberOfLotto);
-            buyLottos.add(lottoNumbers);
+            lottos.add(lottoNumbers);
         }
+        return lottos;
     }
 
     public ArrayList<ArrayList<Integer>> getBuyLottos() {
