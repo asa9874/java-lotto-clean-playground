@@ -1,4 +1,7 @@
+package domain;
 import java.util.ArrayList;
+
+import util.LottoNumberGenerator;
 
 public class Lotto {
 

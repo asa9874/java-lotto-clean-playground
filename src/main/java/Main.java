@@ -1,13 +1,20 @@
-import java.util.ArrayList;
+
+import domain.Lotto;
+import util.LottoInputParser;
+import view.LottoInputView;
+import view.LottoOutputView;
 
 public class Main {
-    public static void main(String[] args) {
-        Lotto lotto = new Lotto();
-        lotto.buyLotto(5000);
 
-        ArrayList<ArrayList<Integer>> lottoNumbers = lotto.getBuyLottos();
-        for (ArrayList<Integer> numbers : lottoNumbers) {
-            System.out.println(numbers);
-        }
+    public static void main(String[] args) {
+
+        LottoInputView inputView = new LottoInputView();
+        LottoOutputView outputView = new LottoOutputView();
+        Lotto lotto = new Lotto();
+
+        Integer moneyInput = LottoInputParser.parseMoney(inputView.inputMoney());
+        lotto.buyLotto(moneyInput);
+
+        outputView.printLottoNumbers(lotto.getBuyLottos());
     }
 }
