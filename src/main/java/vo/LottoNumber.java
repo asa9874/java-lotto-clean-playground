@@ -12,6 +12,7 @@ public class LottoNumber {
         this.number = number;
     }
 
+    // 로또 번호 값을 반환하는 메서드
     public int getNumber() {
         return number;
     }
@@ -36,6 +37,7 @@ public class LottoNumber {
         return String.valueOf(number);
     }
 
+    // 정수 리스트를 LottoNumber 리스트로 변환하는 메서드
     public static ArrayList<LottoNumber> convertFromIntegers(ArrayList<Integer> numbers) {
         ArrayList<LottoNumber> lottoNumbers = new ArrayList<>();
         for (Integer number : numbers) {

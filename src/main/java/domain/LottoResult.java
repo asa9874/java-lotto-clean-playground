@@ -20,6 +20,7 @@ public class LottoResult {
         }
     }
 
+    // 로또 결과를 계산하는 메서드
     public void calculateResult(ArrayList<Lotto> buyLottos, Lotto winningLotto, LottoNumber bonusBall, int investment) {
         validateBonusBall(winningLotto, bonusBall);
         this.totalInvestment = investment;
@@ -45,6 +46,7 @@ public class LottoResult {
         return new HashMap<>(winningStatistics);
     }
 
+    // 수익률을 계산하는 메서드
     public double calculateProfitRate() {
         int totalPrize = calculateTotalPrize();
         return (double) totalPrize / totalInvestment;

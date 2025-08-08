@@ -22,6 +22,7 @@ public class LottoGame {
         this.lottoResult = new LottoResult();
     }
 
+    // 로또 게임의 전체실행하는 메서드
     public void start() {
         int money = inputMoney();
         processManualLottos();

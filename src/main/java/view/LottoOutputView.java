@@ -7,6 +7,7 @@ import vo.Lotto;
 
 public class LottoOutputView {
 
+    // 구매한 로또 번호들을 출력하는 메서드
     public void printLottoNumbers(ArrayList<Lotto> buyLotto, int manualLottoCount) {
         System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + (buyLotto.size()-manualLottoCount) + "개를 구매했습니다.");
 
@@ -15,6 +16,7 @@ public class LottoOutputView {
         }
     }
 
+    // 당첨 통계와 수익률을 출력하는 메서드
     public void printWinningStatistics(HashMap<WinningRank, Integer> winningStatistics, double profitRate) {
         System.out.println("당첨 통계");
         System.out.println("---------");

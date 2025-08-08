@@ -19,6 +19,7 @@ public enum WinningRank {
         this.prize = prize;
     }
 
+    // 일치 개수와 보너스볼 일치 여부로 당첨 등수를 결정하는 메서드
     public static WinningRank valueOf(int matchCount, boolean bonusBallMatch) {
         if (matchCount == 5) {
             if (bonusBallMatch) {
