@@ -1,5 +1,4 @@
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import domain.LottoResult;
@@ -13,7 +12,6 @@ import vo.LottoNumber;
 public class Main {
 
     public static void main(String[] args) {
-
         LottoInputView inputView = new LottoInputView();
         LottoOutputView outputView = new LottoOutputView();
         LottoSimulator lottoSimulator = new LottoSimulator();
@@ -21,17 +19,27 @@ public class Main {
 
         int money = LottoInputParser.parseMoney(inputView.inputMoney());
 
-        // 수동 로또 입력 처리
+        processManualLottos(inputView, lottoSimulator);
+        processAutomaticLottos(inputView, outputView, lottoSimulator, money);
+        processWinningNumbers(inputView, outputView, lottoSimulator, lottoResult, money);
+    }
+
+    private static void processManualLottos(LottoInputView inputView, LottoSimulator lottoSimulator) {
         int manualLottoCount = Integer.parseInt(inputView.inputManualLottoCount());
         ArrayList<Lotto> manualBuyLotto = LottoInputParser
                 .parseManualLottos(inputView.inputManualLottoNumbers(manualLottoCount));
         lottoSimulator.buyManualLotto(manualBuyLotto);
+    }
 
-        // 자동 로또 구매
+    private static void processAutomaticLottos(LottoInputView inputView, LottoOutputView outputView, 
+                                               LottoSimulator lottoSimulator, int money) {
+        int manualLottoCount = lottoSimulator.getBuyLottos().size();
         lottoSimulator.buyAutomaticLotto(money - manualLottoCount * 1000);
-        ArrayList<Lotto> buyLotto = lottoSimulator.getBuyLottos();
-        outputView.printLottoNumbers(buyLotto, manualLottoCount);
+        outputView.printLottoNumbers(lottoSimulator.getBuyLottos(), manualLottoCount);
+    }
 
+    private static void processWinningNumbers(LottoInputView inputView, LottoOutputView outputView,
+                                              LottoSimulator lottoSimulator, LottoResult lottoResult, int money) {
         Lotto winningNumbers = LottoInputParser.parseWinningNumbers(inputView.inputWinningNumbers());
         LottoNumber bonusBall = LottoInputParser.parseBonusBall(inputView.inputBonusBall());
 

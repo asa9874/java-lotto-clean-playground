@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Lotto {
+    
     private static final int LOTTO_NUMBER_COUNT = 6;
     private final ArrayList<LottoNumber> numbers;
 
