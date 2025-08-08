@@ -27,20 +27,11 @@ public class Lotto {
     private void validateDuplicateNumbers(ArrayList<LottoNumber> numbers) {
         ArrayList<LottoNumber> uniqueNumbers = new ArrayList<>();
         for (LottoNumber number : numbers) {
-            if (containsInList(uniqueNumbers, number)) {
+            if (uniqueNumbers.contains(number)) {
                 throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
             }
             uniqueNumbers.add(number);
         }
-    }
-
-    private boolean containsInList(ArrayList<LottoNumber> list, LottoNumber target) {
-        for (LottoNumber number : list) {
-            if (number.equals(target)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void sortNumbers() {
@@ -50,20 +41,11 @@ public class Lotto {
     public int countMatchingNumbers(Lotto other) {
         int matchCount = 0;
         for (LottoNumber number : this.numbers) {
-            if (other.contains(number)) {
+            if (other.numbers.contains(number)) {
                 matchCount++;
             }
         }
         return matchCount;
-    }
-
-    private boolean contains(LottoNumber targetNumber) {
-        for (LottoNumber number : numbers) {
-            if (number.equals(targetNumber)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override

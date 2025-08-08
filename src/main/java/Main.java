@@ -1,8 +1,10 @@
 
-import domain.Lotto;
+import domain.LottoResult;
+import domain.LottoSimulator;
 import util.LottoInputParser;
 import view.LottoInputView;
 import view.LottoOutputView;
+import vo.Lotto;
 
 public class Main {
 
@@ -10,11 +12,16 @@ public class Main {
 
         LottoInputView inputView = new LottoInputView();
         LottoOutputView outputView = new LottoOutputView();
-        Lotto lotto = new Lotto();
+        LottoSimulator lottoSimulator = new LottoSimulator();
+        LottoResult lottoResult = new LottoResult();
 
-        Integer moneyInput = LottoInputParser.parseMoney(inputView.inputMoney());
-        lotto.buyLotto(moneyInput);
+        int money = LottoInputParser.parseMoney(inputView.inputMoney());
+        lottoSimulator.buyLotto(money);
+        outputView.printLottoNumbers(lottoSimulator.getBuyLottos());
 
-        outputView.printLottoNumbers(lotto.getBuyLottos());
+        Lotto winningNumbers = LottoInputParser.parseWinningNumbers(inputView.inputWinningNumbers());
+
+        lottoResult.calculateResult(lottoSimulator.getBuyLottos(), winningNumbers, money);
+        outputView.printWinningStatistics(lottoResult.getWinningStatistics(), lottoResult.calculateProfitRate());
     }
 }
