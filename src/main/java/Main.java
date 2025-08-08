@@ -1,4 +1,7 @@
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import domain.LottoResult;
 import domain.LottoSimulator;
 import util.LottoInputParser;
@@ -17,8 +20,17 @@ public class Main {
         LottoResult lottoResult = new LottoResult();
 
         int money = LottoInputParser.parseMoney(inputView.inputMoney());
-        lottoSimulator.buyLotto(money);
-        outputView.printLottoNumbers(lottoSimulator.getBuyLottos());
+
+        // 수동 로또 입력 처리
+        int manualLottoCount = Integer.parseInt(inputView.inputManualLottoCount());
+        ArrayList<Lotto> manualBuyLotto = LottoInputParser
+                .parseManualLottos(inputView.inputManualLottoNumbers(manualLottoCount));
+        lottoSimulator.buyManualLotto(manualBuyLotto);
+
+        // 자동 로또 구매
+        lottoSimulator.buyAutomaticLotto(money - manualLottoCount * 1000);
+        ArrayList<Lotto> buyLotto = lottoSimulator.getBuyLottos();
+        outputView.printLottoNumbers(buyLotto, manualLottoCount);
 
         Lotto winningNumbers = LottoInputParser.parseWinningNumbers(inputView.inputWinningNumbers());
         LottoNumber bonusBall = LottoInputParser.parseBonusBall(inputView.inputBonusBall());

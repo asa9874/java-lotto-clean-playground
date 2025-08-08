@@ -7,9 +7,10 @@ import vo.Lotto;
 
 public class LottoOutputView {
 
-    public void printLottoNumbers(ArrayList<Lotto> lottos) {
-        System.out.println(lottos.size() + "개를 구입했습니다.");
-        for (Lotto lotto : lottos) {
+    public void printLottoNumbers(ArrayList<Lotto> buyLotto, int manualLottoCount) {
+        System.out.println("수동으로 " + manualLottoCount + "장, 자동으로 " + (buyLotto.size()-manualLottoCount) + "개를 구매했습니다.");
+
+        for (Lotto lotto : buyLotto) {
             System.out.println(lotto);
         }
     }

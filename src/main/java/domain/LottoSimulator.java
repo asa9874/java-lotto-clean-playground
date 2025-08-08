@@ -11,10 +11,13 @@ public class LottoSimulator {
 
     private ArrayList<Lotto> buyLottos = new ArrayList<>();
 
-    public void buyLotto(int price) {
+    public void buyAutomaticLotto(int price) {
         int numberOfLotto = calculateNumberOfLotto(price);
         this.buyLottos.addAll(generateLottos(numberOfLotto));
+    }
 
+    public void buyManualLotto(ArrayList<Lotto> manualLottos) {
+        this.buyLottos.addAll(manualLottos);
     }
 
     private int calculateNumberOfLotto(int price) {
