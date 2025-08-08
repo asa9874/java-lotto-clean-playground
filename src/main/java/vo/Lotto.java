@@ -48,6 +48,10 @@ public class Lotto {
         return matchCount;
     }
 
+    public ArrayList<LottoNumber> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

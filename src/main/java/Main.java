@@ -5,6 +5,7 @@ import util.LottoInputParser;
 import view.LottoInputView;
 import view.LottoOutputView;
 import vo.Lotto;
+import vo.LottoNumber;
 
 public class Main {
 
@@ -20,8 +21,9 @@ public class Main {
         outputView.printLottoNumbers(lottoSimulator.getBuyLottos());
 
         Lotto winningNumbers = LottoInputParser.parseWinningNumbers(inputView.inputWinningNumbers());
+        LottoNumber bonusBall = LottoInputParser.parseBonusBall(inputView.inputBonusBall());
 
-        lottoResult.calculateResult(lottoSimulator.getBuyLottos(), winningNumbers, money);
+        lottoResult.calculateResult(lottoSimulator.getBuyLottos(), winningNumbers, bonusBall, money);
         outputView.printWinningStatistics(lottoResult.getWinningStatistics(), lottoResult.calculateProfitRate());
     }
 }

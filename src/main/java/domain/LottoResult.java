@@ -3,6 +3,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import vo.Lotto;
+import vo.LottoNumber;
 
 public class LottoResult {
 
@@ -19,16 +20,24 @@ public class LottoResult {
         }
     }
 
-    public void calculateResult(ArrayList<Lotto> buyLottos, Lotto winningLotto, int investment) {
+    public void calculateResult(ArrayList<Lotto> buyLottos, Lotto winningLotto, LottoNumber bonusBall, int investment) {
+        validateBonusBall(winningLotto, bonusBall);
         this.totalInvestment = investment;
         for (Lotto lotto : buyLottos) {
-            addWinningResult(lotto, winningLotto);
+            addWinningResult(lotto, winningLotto, bonusBall);
         }
     }
 
-    private void addWinningResult(Lotto lotto, Lotto winningLotto) {
+    private void validateBonusBall(Lotto winningLotto, LottoNumber bonusBall) {
+        if (winningLotto.getNumbers().contains(bonusBall)) {
+            throw new IllegalArgumentException("보너스볼은 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
+    private void addWinningResult(Lotto lotto, Lotto winningLotto, LottoNumber bonusBall) {
         int matchCount = winningLotto.countMatchingNumbers(lotto);
-        WinningRank rank = WinningRank.valueOf(matchCount);
+        boolean bonusBallMatch = lotto.getNumbers().contains(bonusBall);
+        WinningRank rank = WinningRank.valueOf(matchCount, bonusBallMatch);
         winningStatistics.put(rank, winningStatistics.get(rank) + 1);
     }
 

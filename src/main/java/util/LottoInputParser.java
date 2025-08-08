@@ -46,4 +46,18 @@ public class LottoInputParser {
 
         return new Lotto(winningNumbers);
     }
+
+    public static LottoNumber parseBonusBall(String input) {
+        if (input == null || input.isEmpty()) {
+            throw new IllegalArgumentException("보너스 번호를 입력해야 합니다.");
+        }
+
+        String trimmed = input.trim();
+        if (!trimmed.matches("\\d+")) {
+            throw new IllegalArgumentException("보너스 번호는 숫자만 입력할 수 있습니다.");
+        }
+
+        int number = Integer.parseInt(trimmed);
+        return new LottoNumber(number);
+    }
 }
