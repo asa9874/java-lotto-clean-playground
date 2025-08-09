@@ -6,7 +6,7 @@ import util.LottoValidator;
 
 public class Lotto {
 
-    private final ArrayList<LottoNumber> numbers;
+    private final List<LottoNumber> numbers;
 
     // 로또 번호 6개로 로또 객체를 생성하는 생성자 (검증 및 정렬 포함)
     public Lotto(ArrayList<LottoNumber> numbers) {
