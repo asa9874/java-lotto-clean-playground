@@ -2,6 +2,8 @@ package vo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 import util.LottoValidator;
 
 public class Lotto {
